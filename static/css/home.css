@@ -13,12 +13,14 @@ body {
 	box-shadow: 0 0 20px grey;
 	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 10px;
+    padding-bottom: 50px;
 }
 
 #app-heading {
     margin-top: 25px;
     text-align: center;
     color: #e79b10;
+    font-weight: bold;
 }
 
 #app-description {
@@ -33,8 +35,43 @@ body {
 }
 
 .task-container {
-	display: inline-block;
+	display: flex;
     /* border: 1px solid black; */
-    height: 60px;
+    height: 75px;
     width: 100%;
+}
+
+.due-date {
+    font-size: 1.2rem;
+}
+
+.task-category {
+    font-size: 1.2rem;
+    border: 1px solid black;
+    /* border-radius: 20%; */
+    padding: 1px;
+}
+
+.delete-button {
+    display: none;
+    margin-left: auto;
+    margin-top: 35px;
+}
+
+.task-container:hover > .delete-button {
+    display: block;
+}
+
+.delete-button i {
+    color: orange;
+}
+
+#add-task {
+    margin: 30px 50%; 
+    width: 50%;
+}
+
+#add-task img {
+    height: 50px;
+    width: 50px;
 }

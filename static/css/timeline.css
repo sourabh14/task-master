@@ -2,8 +2,9 @@
   position: relative;
   border-left: 6px solid orange;
   height: 100%;
-  left: 40px;
-  top: -40px;
+  width: 2px;
+  left: 45px;
+  top: 18px;
 }
 
 .check-container {
