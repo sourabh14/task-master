@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-image: url("../images/todolist-background2.png");
+    background-attachment: fixed;
+    background-size: 40%;
+}
+
+#page-wrap {
+	width: 700px;
+	margin: 30px auto;
+	padding: 20px;
+	box-shadow: 0 0 20px grey;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+}
+
+#app-heading {
+    margin-top: 25px;
+    text-align: center;
+    color: #e79b10;
+}
+
+#app-description {
+	font-style: italic;
+	text-align: center;
+	color: #c9860b;
+	font-size: 1.2rem;
+}
+
+#todolist-container {
+	margin: 0px 60px;
+}
+
+.task-container {
+	display: inline-block;
+    /* border: 1px solid black; */
+    height: 60px;
+    width: 100%;
+}
