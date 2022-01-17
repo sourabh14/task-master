@@ -6,105 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Master</title>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/jpg" href="images/favicon-todolist.ico"/>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- Datepicker -->
-    <link href='bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' rel='stylesheet' type='text/css'>
 
     <!-- Font awesome CSS -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/timeline.css">
+
 </head>
 
 <body>
     <div id="page-wrap">
         <!-- App heading and description -->
-        <h1 id="app-heading">
-            <i class="fas fa-tasks"></i>
+        <div id="app-heading">
+            <i class="fas fa-tasks fa-sm"></i>
             Task Master
-        </h1>
-        <p id="app-description">Plan your day, Get the job done, Be productive</p>
+        </div>
+        <p id="app-description">Plan your day.. Get the job done.. Be productive..</p>
         <br> 
 
         <!-- ToDo List -->
         <div id="todolist-container">
-
-            <div class="task-container">
-                <div class="vertical-line"></div>
-                <label class="check-container">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                    <span class="task-description">Buy grocery from market</span>
-                    <div class="other-properties">
-                        <span class="due-date">
-                            <i class="fas fa-calendar-alt"></i> 
-                            JAN 16, 2022   
-                        </span>
-                        &nbsp; &nbsp;
-                        <span class="task-category">Home</span>
+            
+            <% for (let t of todo_list) { %>
+                <div class="task-container">
+                    <div class="vertical-line"></div>
+                    <label class="check-container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        <span class="task-description"><%= t.description %></span>
+                        <div class="other-properties">
+                            <span class="due-date">
+                                <i class="fas fa-calendar-alt"></i> 
+                                <%= new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'short', day: '2-digit'}).format(t.duedate) %>  
+                            </span>
+                            &nbsp; &nbsp; &nbsp;
+                            <span class="task-category"><%= t.category %></span>
+                        </div>
+                    </label>
+                    <div class="delete-button" title="Delete">
+                        <a href="/delete-task/?id=<%= t._id %> ">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
                     </div>
-                </label>
-                <div class="delete-button">
-                    <a href="">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
                 </div>
-            </div>
+            <% } %>
 
-            <div class="task-container">
-                <div class="vertical-line"></div>
-                <label class="check-container">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                    <span class="task-description">Buy grocery from market</span>
-                    <div class="other-properties">
-                        <span class="due-date">
-                            <i class="fas fa-calendar-alt"></i> 
-                            JAN 16, 2022   
-                        </span>
-                        &nbsp; &nbsp;
-                        <span class="task-category">Home</span>
-                    </div>
-                </label>
-                <div class="delete-button">
-                    <a href="">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="task-container">
-                <div class="vertical-line"></div>
-                <label class="check-container">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                    <span class="task-description">Buy grocery from market</span>
-                    <div class="other-properties">
-                        <span class="due-date">
-                            <i class="fas fa-calendar-alt"></i> 
-                            JAN 16, 2022   
-                        </span>
-                        &nbsp; &nbsp;
-                        <span class="task-category">Home</span>
-                    </div>
-                </label>
-                <div class="delete-button">
-                    <a href="">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                </div>
-            </div>
         </div>  
 
         <!-- Add task Button -->
-        <div id="add-task">
-            <button title="Add Task" data-toggle="modal" data-target="#addTaskModal">
-                <i class="fas fa-plus-circle fa-3x"></i>
-            </button>
+        <div id="add-task" title="Add Task" data-toggle="modal" data-target="#addTaskModal">
+            <i class="fas fa-plus-circle fa-3x"></i>
         </div>
         
         <!-- Add Task Modal -->
@@ -114,16 +77,16 @@
                     <div class="modal-header">
                         <h4 class="modal-title" id="toDoListModalLabel">Add Task</h4>
                     </div>
-                    <div class="modal-body">
-                        <form>
+                    <form  action="/create-task" method="POST" id="addTaskForm">
+                        <div class="modal-body">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Description:</label>
-                                <input type="text" class="form-control" id="task-description">
+                                <input type="text" class="form-control" id="task-description" name="description" required>
                             </div>
                             <div class="category-and-date" style="display: flex; justify-content: space-between;">
                                 <div class="form-group">
                                     <label for="recipient-name" class="col-form-label">Category:</label>
-                                    <select class="custom-select" style="display: block; width:120px;">
+                                    <select name="category" class="custom-select" style="display: block; width:120px;" required>
                                         <option>Work</option>
                                         <option>Chores</option>
                                         <option>Personal</option>
@@ -132,17 +95,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="dueDate" class="col-form-label">Due Date:</label>
-                                    <input type="date" class="form-control" id="dueDate" name="dueDate" style="display: block;">
+                                    <input type="date" class="form-control" id="dueDate" name="duedate" style="display: block;" required>
                                 </div>
                             </div>
-                            
-                            
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #bdbdbd; border: 0px">Close</button>
-                        <button type="button" class="btn btn-primary" style="background-color: orange; border: 0px;">Add</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="color: white; background-color: #bdbdbd; border: 0px">Close</button>
+                            <button type="submit" class="btn btn-primary" style="color: white; background-color: orange; border: 0px;">Add</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
