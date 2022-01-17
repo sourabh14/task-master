@@ -67,11 +67,34 @@ body {
 }
 
 #add-task {
-    margin: 30px 50%; 
-    width: 50%;
+    margin-left: 85%;
+    margin-top: 30px;
+    display: inline-block;
 }
 
-#add-task img {
-    height: 50px;
-    width: 50px;
+#add-task button {
+	height: 57px;
+	width: 57px;
+    padding: 0;
+    border: none;
+    outline: none;
+    /* border-radius: 50%; */
+}
+
+#add-task button i {
+    margin: 0;
+    color: #fba301;
+}
+
+.modal-body {
+    overflow-y:inherit !important;
+}
+
+.modal-dialog {
+    width: 400px;
+    position: fixed;
+    bottom: 90px;
+    left: 35%;
+    /* right:20px; */
+    /* margin:0; */
 }

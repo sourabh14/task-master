@@ -24,6 +24,10 @@
   
 }
 
+.other-properties {
+  font-size: 0.5rem;
+}
+
 /* Hide the browser's default checkbox */
 .check-container input {
   position: absolute;
