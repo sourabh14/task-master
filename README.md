@@ -25,3 +25,7 @@ sudo systemctl status mongod
 node index.js
 ```
 5. The app will be running at http://localhost:8000/
+
+# Screenshots
+
+![Alt text](https://raw.githubusercontent.com/sourabh14/task-master/master/static/images/taskmaster.png "Shopcart")
