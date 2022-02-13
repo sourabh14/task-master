@@ -1,4 +1,9 @@
-# Getting Started
+# About Task Master
+Task Master is an interactive to-do list app built using Node JS and Mongo DB
+
+## Live Demo
+Link- http://codeialapp.co.in:8001/
+
 ## Prerequisites
 - Node JS
 - Mongo DB
